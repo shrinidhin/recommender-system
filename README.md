@@ -1,6 +1,7 @@
 # User based product recommendations
 
 ![](https://github.com/shrinidhin/recommender-system/blob/main/images/screenshot.JPG?raw=true)
+
 A Recommendation engine for an e-commerce use case that provides recommendations to users based on their purchase history. It has been built using the matrix factorization algorithm. 
 
 **Installation**
@@ -19,11 +20,11 @@ This notebook converts the raw data stored in json.gz of different categories in
 
 [Model building and training](https://github.com/shrinidhin/recommender-system/blob/main/recommendation-system-using-matrix-factorization.ipynb)
 
-This is where the model is trained,hyperparameters are tuned and the final model is saved to be used by the wave app to provide recommendations.
+This is where the model is trained,hyperparameters are tuned and the final model is saved to be used by the wave app to provide recommendations. The model has been trained using the Matrix Factorization module of the h2o4gpu package.
 
 [Wave App](https://github.com/shrinidhin/recommender-system/tree/main/rec-system)
 
-The web application built using h2o.ai Wave uses the model built in the previous notebook to provide product recommendations relevant to each selected user. 
+The web application uses the model built in the previous notebook and other output files to provide product recommendations relevant for each selected user. 
 
 **Running your Wave app**\
 After setting up your environment with the dependencies installed, navigate to the ```rec-system``` directory and execute the following command
