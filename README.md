@@ -1,4 +1,6 @@
-# recommender-system
+# User based product recommendations
+
+![](https://github.com/shrinidhin/recommender-system/blob/main/images/screenshot.JPG?raw=true)
 A Recommendation engine for an e-commerce use case that provides recommendations to users based on their purchase history. It has been built using the matrix factorization algorithm. 
 
 **Installation**
@@ -28,7 +30,7 @@ After setting up your environment with the dependencies installed, navigate to t
 
 ```wave run app.py```
 
-Now use any web browser of your choice to view the app at : [localhost:10101]()
+Now use any web browser of your choice to view the app at : [localhost:10101/rec]()
 
 **Citations**
 
