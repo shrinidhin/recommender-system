@@ -96,14 +96,16 @@ def initialize_ui(q:Q):
         items=[]
     )
 
-def show_progress(q:Q):
-    q.page['loading'] = ui.form_card(
-    box='1 1 4 10',
-    items=[
+def show_progress(q:Q,initial=True):
+    if initial:
+        q.page['loading'] = ui.form_card(
+         box='1 1 9 9',
+         items=[
         #ui.progress(label='Indeterminate Progress', caption='Goes on forever'),
-        ui.progress(label='Standard Progress', caption='Downloading the interwebs...', value=0.25),
-    ]
-) 
+         ui.progress('Getting ready...'),
+         ])
+    else:
+        q.page['Loading']=ui.form_card(box='1 1 12 15',items=[ui.progress('Fetching recommendations....')]) 
 
 def show_recommendations(q:Q):
     #constructing test set:User id and item
@@ -121,15 +123,16 @@ def show_recommendations(q:Q):
     X_test['predictions']=get_recommendations(X_test_sparse)
     #Sorting Dataframe based on predictions
     X_test=X_test.sort_values(by=['predictions'],ascending=False)[:10]
+    a=np.array(X_test['predictions'].values.tolist())
+    X_test['predictions']=np.where(a>5,5,a).tolist()
     q.page['recommend'].items=[
         ui.stat_list_item(label=q.client.id_title[row['products']],caption='',
-        value='',icon='ShoppingCartSolid',icon_color='yellow')
+        value=str(np.round(row['predictions'])),icon='ShoppingCartSolid',icon_color='yellow')
         for k,row in X_test.iterrows()
     ]
 
 
 def show_user_info(q:Q):
-
     q.page['history'].items=[
         ui.stat_table_item(label=q.client.id_title[k[0]], caption='',
                                values=[str(k[1])],
@@ -140,14 +143,17 @@ def show_user_info(q:Q):
 @app('/rec')
 async def serve(q:Q):
     if not q.client.initialized:
-        q.client.u_dict,q.client.user_indices,q.client.items=fetch_data()
-        q.client.meta_data,q.client.id_title=get_product_data()
+        show_progress(q)
+        await q.page.save()
+        q.client.u_dict,q.client.user_indices,q.client.items= await q.run(fetch_data)
+       # q.client.u_dict,q.client.user_indices,q.client.items=fetch_data()
+        q.client.meta_data,q.client.id_title=await q.run(get_product_data)
         q.client.user=list(q.client.u_dict.keys())[0]
-        get_model()
+        await q.run(get_model)
         initialize_ui(q)
         q.client.initialized=True
     if  q.args.select_users:
-        q.client.user=q.args.select_users
+        q.client.user=q.args.select_users 
     show_user_info(q)
     show_recommendations(q)
-    await q.page.save()
+    await  q.page.save()
