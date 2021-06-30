@@ -1,6 +1,6 @@
 # User based product recommendations
 
-![](https://github.com/shrinidhin/recommender-system/blob/main/images/screenshot.JPG?raw=true)
+![](https://github.com/shrinidhin/recommender-system/blob/main/images/screenshot.JPG)
 
 A Recommendation engine for an e-commerce use case that provides recommendations to users based on their purchase history. It has been built using the matrix factorization algorithm. 
 
