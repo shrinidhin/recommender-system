@@ -34,6 +34,7 @@ After setting up your environment with the dependencies installed, navigate to t
 Now use any web browser of your choice to view the app at : [localhost:10101/rec]()
 
 Do check out the following blog post for a more detailed overview:
+
 https://www.h2o.ai/blog/what-are-we-buying-today/
 
 **Citations**
