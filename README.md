@@ -33,10 +33,12 @@ After setting up your environment with the dependencies installed, navigate to t
 
 Now use any web browser of your choice to view the app at : [localhost:10101/rec]()
 
+Do check out the following blog post for a more detailed overview:
+https://www.h2o.ai/blog/what-are-we-buying-today/
+
 **Citations**
 
 Justifying recommendations using distantly-labeled reviews and fined-grained aspects
 Jianmo Ni, Jiacheng Li, Julian McAuley
 Empirical Methods in Natural Language Processing (EMNLP), 2019 [pdf](http://cseweb.ucsd.edu/~jmcauley/pdfs/emnlp19a.pdf)
-
 
